@@ -1,0 +1,2 @@
+$("#task_form").html("<%= escape_javascript(render(:partial => "form"))%>");
+$("#task_priority").val("<%= escape_javascript(@task.priority)%>");

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Infinum</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <script>
+    $(function() {
+        $( "#tasks" ).sortable(
+        	{
+        	revert: true,
+    		stop: function(event, ui) {
+    		var positions=[];
+        	$('li').each(function(index) {positions.push ($(this).attr("id").replace("task_",""));});
+        	//alert(positions.toString());
+        	}}
+        );
+        $( "#tasks" ).disableSelection();
+    });
+    </script>
+</head>
+<body>
+
+<%= yield %>
+</body>
+</html>

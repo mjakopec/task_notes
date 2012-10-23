@@ -1,0 +1,9 @@
+<h1>Zadaci</h1>
+<div id="timer">Rendered at: <%= Time.now %></div> 
+<div id="task_form">
+ <%= render 'form' %>
+</div>
+<div id="msgbx"></div>
+<ul id="tasks">
+ <%= render :partial => @tasks.reverse %>
+</ul>

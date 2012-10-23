@@ -1,0 +1,9 @@
+<%= content_tag_for(:li, task) do %>
+  <!--<p class="title"><%= "#{task.todo} - [#{task.email}]" %></p>-->
+  <p class="title"><%= task.todo %></p>
+  <p class="content">Prioritet:&nbsp;<%= task.priority %></p>
+  <span class="posted_at">Task created <%= time_ago_in_words(task.created_at) %> ago.
+      (<%= link_to 'Delete', task, :confirm => 'Are you sure?', :method => :delete, :remote => true%>)
+      (<%= link_to 'Edit',   edit_task_path(task), :remote => true %>)
+  </span>
+<% end %>

@@ -1,0 +1,3 @@
+$('#tasks').prepend('<%= escape_javascript(render(@task)) %>');
+$('#tasks > li').first().effect('highlight', {color: 'grey', mode: 'fadeIn'}, 2000);
+$(":textarea").val("");
