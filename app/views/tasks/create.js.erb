@@ -1,3 +1,7 @@
 $('#tasks').prepend('<%= escape_javascript(render(@task)) %>');
 $('#tasks > li').first().effect('highlight', {color: 'grey', mode: 'fadeIn'}, 2000);
+var positions=[];
+$('ul.ui-sortable > li').each(function(index) {positions.push ($(this).attr("id").replace("task_",""));});
+$("#listing").val(positions.toString());
+$.post('/order_list', {who:$("#task_email").val(),list_of:positions.join()});
 $(":textarea").val("");
