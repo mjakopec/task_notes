@@ -1,9 +1,14 @@
 class TasksController < ApplicationController
+before_filter :login_required
   # GET /tasks
   # GET /tasks.json
   def index
-session[:email] = "mario@faveo.hr"
-    @tasks = Task.all
+      @user  = User.find_by_email(session[:email])
+      
+        list = @user.linup.split(",").map { |s| s.to_i }
+        @tasks = Task.find_all_by_id(list).sort_by{|x| list.index(x.id)}
+          
+    
     @task  = Task.new
     respond_to do |format|
       format.html # index.html.erb
@@ -11,14 +16,13 @@ session[:email] = "mario@faveo.hr"
     end
   end
 
-  # GET /tasks/1
-  # GET /tasks/1.json
-  def show
-    @task = Task.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @task }
+  def reorder_by(order, &key_proc)
+    index_to_obj = inject({}) do |hash, obj|
+      hash[key_proc.call(obj)] = obj
+      hash
+    end
+    order.map do |x|
+      index_to_obj[x]
     end
   end
 
@@ -60,7 +64,7 @@ session[:email] = "mario@faveo.hr"
   def update
     @task = Task.find(params[:id])
     respond_to do |format|
-      if @task.update_attributes(params[:task])
+      if @task.update_attributes(params[:task]) 
         format.html { redirect_to tasks, notice: 'Task was successfully updated.' }
         format.json { render json: @task, status: :updated, location: @task }
         format.js
@@ -82,5 +86,10 @@ session[:email] = "mario@faveo.hr"
       format.json { head :no_content }
       format.js
     end
+  end
+
+  def ordering_list
+      User.find(:all, "email='#{params[:who]}'")
+      User.update_all("linup = '#{params[:list_of]}'")
   end
 end

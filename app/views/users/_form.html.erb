@@ -1,0 +1,13 @@
+<%= stylesheet_link_tag "../stylesheet/sessions.css" %>
+<div style="margin-top: -20px">
+<%= form_for @user do |f| %>
+    <%= f.label :email, "E-mail" %>
+    <%= f.text_field :email %>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    <%= f.label :password_confirmation, "Confirm" %>
+    <%= f.password_field :password_confirmation %>
+	<label><%= link_to "Log in", login_path %></label>
+  <%= f.submit (@user.new_record? ? "Sign up" : "Update") %>
+<% end %>
+</div>

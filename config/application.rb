@@ -11,7 +11,7 @@ end
 
 module Infinum
   class Application < Rails::Application
-    # Settings in config/environments/* take precedence over those specified here.
+    config.autoload_paths << "#{config.root}/lib"    # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
@@ -55,7 +55,9 @@ module Infinum
 
     # Enable the asset pipeline
     config.assets.enabled = true
-
+    
+    #patch for error Could not determine content-length of response body.
+    config.assets.logger = false
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
   end
