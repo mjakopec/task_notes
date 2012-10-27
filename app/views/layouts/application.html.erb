@@ -21,7 +21,9 @@
     </script>
 </head>
 <body>
-
+<% flash.each do |key,  value| %>
+<%= content_tag(:div, value, class: "flash #{key}") %>
+<% end %>
 <%= yield %>
 </body>
 </html>
