@@ -12,18 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email %>
     <%= f.text_field :email, :value => session[:email] %>
-  </div>
+  </div><br />
+ <div class="field">
+    <%= f.label :todo %><%= f.text_area :todo %>
+ </div><br />
   <div class="field">
-    <%= f.label :todo %><br />
-    <%= f.text_area :todo %>
-  </div>
-  <div class="field">
-    <%= f.label :priority %><br />
+    <%= f.label :priority %>
     <%= f.select :priority, options_for_select([["niski", "niski"], ["normalni", "normalni"], ["visoki", "visoki"],],:priority) %>
-  </div>
+  </div><br />
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit %><input type="hidden" id="listing" />
   </div>
+  <div></div>
 <% end %>

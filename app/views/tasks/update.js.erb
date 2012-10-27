@@ -6,10 +6,12 @@
   $("#msgbx").hide(300);
   $("#msgbx").html("<%= escape_javascript(flash[:notice])%>");
   $("#msgbx").show(300);
-  $(":input:not(input[type=submit])").val("");
   who = "#task_"+ <%= @task.id %>;
   $('input[name="commit"]').val("Create Post");
   $('form').attr('action', 'tasks');
-  $(who).replaceWith("<%= escape_javascript(render(:partial => "item")) %>");
+  $(who).replaceWith("<%= escape_javascript(render(@task)) %>");
   $(who).effect('highlight', {color: 'yellow', mode: 'fadeIn'}, 2000);
+  $("input[name='commit']").focus();
+  $("#task_todo").val("");
+  $("#task_priority").val("normalni");
 <% end %>

@@ -1,9 +1,8 @@
-<h1>Zadaci</h1>
-<div id="timer">Rendered at: <%= Time.now %></div> 
-<div id="task_form">
+<%= stylesheet_link_tag "../stylesheet/gzip.css" %>
+<div id="task_form" class="formholder">
  <%= render 'form' %>
 </div>
-<div id="msgbx"></div>
+<div id="msgbx"></div><br />
 <ul id="tasks">
- <%= render :partial => @tasks.reverse %>
+ <%= render :partial => @tasks %>
 </ul>

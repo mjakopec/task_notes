@@ -1,0 +1,15 @@
+<%= stylesheet_link_tag "../stylesheet/sessions.css" %>
+<%= form_tag sessions_path do %>
+		<fieldset>
+			<legend>Prijava</legend>
+			<%= label_tag :login, "E-mail" %>
+    		<%= text_field_tag :login, params[:login] %>
+			<div class="clear"></div>			
+			<%= label_tag :password %>
+			<%= password_field_tag :password %>
+			<div class="clear"></div>
+			<label><%= link_to "Sign up!", signup_path %></label>
+			<%= submit_tag "Log in" %></div>
+			<div class="clear"></div>
+		</fieldset>
+<% end %>
