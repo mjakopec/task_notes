@@ -1,1 +1,7 @@
 $('#<%= dom_id(@task) %>').effect('highlight', {color: 'green', mode: 'hide'}, 1200);
+$(":textarea").val("");
+var positions=[];
+$('ul.ui-sortable > li').each(function(index) {positions.push ($(this).attr("id").replace("task_",""));});
+$("#listing").val(positions.toString());
+$('#<%= dom_id(@task) %>').remove();
+$.post('/order_list', {who:$("#task_email").val(),list_of:positions.join()});

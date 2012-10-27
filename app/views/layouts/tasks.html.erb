@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<title>Task Notes</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="index, follow">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <script>
+    $(function() {
+        $( "#tasks" ).sortable(
+        	{
+        	revert: true,
+    		stop: function(event, ui) {
+    		var positions=[];
+        	$("ul.ui-sortable > li").each(function(index) {positions.push ($(this).attr("id").replace("task_",""));});
+        	//$("#listing").val(positions.toString());
+        	$.post('/order_list', {who:$("#task_email").val(),list_of:positions.join()});
+        	}}
+        );
+        $( "#tasks" ).disableSelection();
+    });
+    </script>
+</head>
+<body>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~ Head ~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<div class="head">
+</div>
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~ Global ~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<div class="global">
+	<div class="main_l">
+		<div class="main_r">
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~ Head Menu ~~~~~~~~~~~~~~~~~~~~~~~~~-->
+			<div class="h_menu">
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~ Head Menu/UL ~~~~~~~~~~~~~~~~~~~~~~~~~-->
+				<div class="left-column">
+				<ul>
+				<li class="hm1"><a href="/logout">Log of</a></li>
+				</ul>
+				</div>
+</div>
+<div class="center">
+	<div class="col"> 
+		<div class="center_full">
+		<h1>TODO LIST</h1>
+    		<div style="height:600px; padding: 15px 15px 15px 15px">
+			<%= yield %>
+			</div>
+		</div>
+	</div>
+</div>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~ Footer ~~~~~~~~~~~~~~~~~~~~~~~~~-->
+			<div class="footer">
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~ Footer/Right Menu ~~~~~~~~~~~~~~~~~~~~~~~~~-->
+			  <div class="footer_right">
+                <ul>
+					<li><a href="http://www.faveo.hr">Home</a></li>
+					<li><a href="/contact/">Contact</a></li>
+                    <li><a href="/privacy-policy/">Privacy Policy &amp; Disclaimer</a></li>
+				</ul><br />Copyright © today</div>
+		    <img src="images/we-work-with.png" width="279" height="55" /></div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
