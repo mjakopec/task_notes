@@ -91,5 +91,6 @@ before_filter :login_required
   def ordering_list
       User.find(:all, "email='#{params[:who]}'")
       User.update_all("linup = '#{params[:list_of]}'")
+      head :ok #must know about redirect for ajax stay there
   end
 end
