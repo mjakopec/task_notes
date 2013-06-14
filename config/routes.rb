@@ -5,7 +5,7 @@ Infinum::Application.routes.draw do
   match 'login' => 'sessions#new', :as => :login
   match 'list' => 'tasks#index', :as => :list
   
-  match 'order_list' => 'tasks#ordering_list'
+  match 'order_list' => 'tasks#ordering_list', :as => :order_list
   
   resources :sessions
   resources :users
